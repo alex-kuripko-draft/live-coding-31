@@ -2,11 +2,11 @@ import {Button, Typography, Paper, Grid, Box, styled} from '@mui/material';
 
 const UserCard = styled(Paper)({
     padding: 16,
-    display: 'flex', 
+    display: 'flex',
     justifyContent: 'space-between'
 });
 
-const UserItem = ({user}) => {
+const UserItem = ({user, onEditClick}) => {
     return (
         <Grid item xs={12}>
             <UserCard>
@@ -16,7 +16,7 @@ const UserItem = ({user}) => {
                     <Typography variant="body1">Email: {user.email}</Typography>
                 </Box>
                 <Box display="flex" alignItems="center" gap={1}>
-                    <Button variant="contained">
+                    <Button variant="contained" onClick={onEditClick}>
                         Edit
                     </Button>
                     <Button variant="contained" color="error">
