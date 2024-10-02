@@ -1,11 +1,10 @@
 import {Grid, Typography} from '@mui/material';
 import UserItem from "./user-item";
+import {selectUsers} from "../../redux/selectors";
+import {useSelector} from "react-redux";
 
 const UserList = () => {
-    const users = [
-        {id: 1, name: 'Alex', age: 25, email: 'alex@gmail.com'},
-        {id: 2, name: 'Viktor', age: 30, email: 'viktor@gmail.com'},
-    ]
+    const users = useSelector(selectUsers);
 
     return (
         <Grid container spacing={2}>
