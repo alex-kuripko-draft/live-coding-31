@@ -1,25 +1,36 @@
 import {Button, Grid, Typography} from '@mui/material';
 import UserItem from "./user-item";
 import {selectUsers} from "../../redux/selectors";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import UserFormModal from "../user-form-modal";
 import {useState} from "react";
+import {addUser, deleteUser, editUser} from "../../redux/user/slice";
 
 const UserList = () => {
     const [openModal, setOpenModal] = useState(false);
     const [editingUser, setEditingUser] = useState(null);
+
     const users = useSelector(selectUsers);
-    
+    const dispatch = useDispatch();
+
     const handleOpenModal = (user = null) => {
         setEditingUser(user);
         setOpenModal(true);
     };
-    
+
     const handleCloseModal = () => {
         setEditingUser(null);
         setOpenModal(false);
     };
-    
+
+    const handleSubmitUserForm = (user) => {
+        dispatch((user.id ? editUser : addUser)(user));
+    };
+
+    const handleDeleteUser = (user) => {
+        dispatch(deleteUser(user.id));
+    };
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -27,9 +38,10 @@ const UserList = () => {
             </Grid>
             {users.map((user) => (
                 <UserItem
-                    key={user.id} 
+                    key={user.id}
                     user={user}
                     onEditClick={() => handleOpenModal(user)}
+                    onDeleteClick={() => handleDeleteUser(user)}
                 />
             ))}
             <Grid item xs={12}>
@@ -41,7 +53,7 @@ const UserList = () => {
                 open={openModal}
                 onClose={handleCloseModal}
                 editingUser={editingUser}
-                onSubmit={console.log}
+                onSubmit={handleSubmitUserForm}
             />
         </Grid>
     );

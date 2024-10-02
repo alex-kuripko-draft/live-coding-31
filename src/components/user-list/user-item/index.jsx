@@ -6,7 +6,7 @@ const UserCard = styled(Paper)({
     justifyContent: 'space-between'
 });
 
-const UserItem = ({user, onEditClick}) => {
+const UserItem = ({user, onEditClick, onDeleteClick}) => {
     return (
         <Grid item xs={12}>
             <UserCard>
@@ -19,7 +19,7 @@ const UserItem = ({user, onEditClick}) => {
                     <Button variant="contained" onClick={onEditClick}>
                         Edit
                     </Button>
-                    <Button variant="contained" color="error">
+                    <Button variant="contained" color="error" onClick={onDeleteClick}>
                         Delete
                     </Button>
                 </Box>
