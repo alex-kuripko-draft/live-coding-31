@@ -36,6 +36,13 @@ const UserList = () => {
             <Grid item xs={12}>
                 <Typography variant="h4">User List</Typography>
             </Grid>
+            {!users.length && (
+                <Grid item xs={12}>
+                    <Typography variant="h6">
+                        Please add your first user
+                    </Typography>
+                </Grid>
+            )}
             {users.map((user) => (
                 <UserItem
                     key={user.id}

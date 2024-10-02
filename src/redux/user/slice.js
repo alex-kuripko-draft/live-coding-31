@@ -2,10 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
-    users: [
-        {id: 1, name: 'Alex', age: 25, email: 'alex@gmail.com'},
-        {id: 2, name: 'Viktor', age: 30, email: 'viktor@gmail.com'},
-    ],
+    users: [],
 };
 
 const userSlice = createSlice({
